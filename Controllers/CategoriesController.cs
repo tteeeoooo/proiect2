@@ -96,7 +96,6 @@ namespace Store.Controllers
                 return NotFound();
             }
 
-            // Șterge categoria și, implicit, produsele asociate (datorită cascadei)
             db.Categories.Remove(category);
             await db.SaveChangesAsync();
 
