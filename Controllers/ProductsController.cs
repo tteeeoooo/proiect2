@@ -167,7 +167,7 @@ namespace Store.Controllers
             db.Products.Remove(product);
             await db.SaveChangesAsync();
 
-            TempData["SuccessMessage"] = "Produsul a fost șters cu succes!";
+            TempData["SuccessMessage"] = "The product was deleted!";
             return RedirectToAction(nameof(Index)); 
         }
         [Authorize(Roles = "Administrator")]
