@@ -1,0 +1,48 @@
+@model ShoppingCart
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Product.Name</td>
+                <td>
+                    <form asp-action="UpdateQuantity" asp-controller="ShoppingCart" method="post" style="display: inline;">
+                        <input type="hidden" name="productId" value="@item.ProductId" />
+                        <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control" style="width: 70px; display: inline;" />
+                        <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                    </form>
+                </td>
+                <td>@item.Product.Price.ToString("C", System.Globalization.CultureInfo.CurrentCulture)</td>
+                <td>@string.Format("{0:C}", item.Product.Price * item.Quantity)</td>
+                <td>
+                    <form asp-action="RemoveFromCart" asp-controller="ShoppingCart" method="post" style="display: inline;">
+                        <input type="hidden" name="productId" value="@item.ProductId" />
+                        <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="3" style="text-align: right;"><strong>Total:</strong></td>
+            <td><strong>@string.Format("{0:C}", Model.Items.Sum(i => i.Product.Price * i.Quantity))</strong></td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>
+
+<form asp-action="Checkout" method="get">
+    <button type="submit" class="btn btn-primary">Proceed to Checkout</button>
+</form>

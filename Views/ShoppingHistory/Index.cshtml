@@ -1,0 +1,34 @@
+@model IEnumerable<Store.Models.ShoppingHistory>
+
+<h2>Order History</h2>
+
+@if (!Model.Any())
+{
+    <p>You have no orders yet.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Purchase Date</th>
+                <th>Total Amount</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.PurchaseDate.ToString("g")</td>
+                    <td>@order.TotalAmount.ToString("C")</td>
+                    <td>
+                        <a asp-action="OrderConfirmation" asp-route-id="@order.Id" class="btn btn-primary">View Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

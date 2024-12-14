@@ -1,0 +1,31 @@
+@model ShoppingHistory
+
+<h2>Order Confirmation</h2>
+<h3>Here Items your receipt</h3>
+
+<p><strong>Order ID:</strong> @Model.Id</p>
+<p><strong>Purchase Date:</strong> @Model.PurchaseDate.ToString("g")</p>
+<p><strong>Total Amount:</strong> @Model.TotalAmount.ToString("C")</p>
+
+<h3>Items</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.Quantity</td>
+                <td>@item.Price.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Index", "ShoppingHistory")" class="btn btn-primary">View Order History</a>

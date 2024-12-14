@@ -1,0 +1,13 @@
+@model Store.Models.Review
+
+<h1>Review Details</h1>
+
+<dl class="row">
+    <dt class="col-sm-2">Content</dt>
+    <dd class="col-sm-10">@Model.Content</dd>
+
+    <dt class="col-sm-2">Date</dt>
+    <dd class="col-sm-10">@Model.Date</dd>
+</dl>
+
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>

@@ -1,0 +1,19 @@
+@model Store.Models.Review
+
+<h1>Create Review</h1>
+
+<form asp-action="Create" asp-controller="Reviews" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="ProductId" value="@Model.Id" />
+    <div class="form-group">
+        <label for="Content">Comment:</label>
+        <textarea id="Content" name="Content" class="form-control"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Grade">Grade (1-5):</label>
+        <input id="Grade" name="Grade" type="number" min="1" max="5" class="form-control" />
+        <span asp-validation-for="Grade" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Post</button>
+</form>

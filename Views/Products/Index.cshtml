@@ -1,0 +1,47 @@
+@model IEnumerable<Store.Models.Product>
+
+<h2 class="text-center">Afisare produse skincare</h2>
+<br />
+
+
+@if (User.IsInRole("Colaborator"))
+{
+    @* <form method="post" action="/Products/Delete/@Model.Id" onsubmit="return confirm('Are you sure you want to delete this product?');">
+        <button type="submit" class="btn btn-danger">Delete Product</button>
+    </form> *@
+    <div class="d-flex justify-content-center">
+        @* <a class="btn btn-outline-success" href="/Categories/Index">Show categoies</a> <br /> *@
+        <a class="btn btn-outline-success" href="/Products/Create">Add a new product</a> <br />
+    </div>
+}
+@* <div class="d-flex justify-content-center">
+    <a class="btn btn-outline-success" href="/Categories/Index">Show categoies</a> <br />
+    <a class="btn btn-outline-success" href="/Products/Create">Add a new product</a> <br />
+</div> *@
+<br />
+<a class="btn btn-outline-success" href="/Categories/Index">Show categoies</a> <br />
+@foreach (var product in Model)
+{
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title alert-success py-3 px-3 rounded-2">@product.Name</h3>
+            <div class="card-text">@product.Description</div>
+            <div class="card-text">@product.Brand</div>
+            <div class="card-text">@product.Price</div>
+            <div class="card-text">@product.Ingredients</div>
+            <div class="d-flex justify-content-between flex-row mt-5">
+                <div><i class="bi bi-globe"></i>@product.Category?.CategoryName</div>
+                <a class="btn btn-success" href="/Products/Details/@product.Id">See product</a>
+                
+
+                @if (User.IsInRole("Administrator") || User.IsInRole("Colaborator"))
+                {
+                    <a class="btn btn-info" href="/Products/Edit/@product.Id">Edit product</a>
+                    <span class="alert-success px-1 align-content-center">@product.DateListed</span>
+                }
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+}

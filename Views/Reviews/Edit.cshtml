@@ -1,0 +1,17 @@
+@model Store.Models.Review
+
+<h1>Edit Review</h1>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label for="Content">Content</label>
+        <input asp-for="Content" class="form-control" />
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Date">Date</label>
+        <input asp-for="Date" class="form-control" />
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

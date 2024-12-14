@@ -1,0 +1,51 @@
+@model Product
+
+<h2>Edit Product</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" name="Id" value="@ViewBag.EditedProduct.Id" />
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" class="form-control" id="Name" name="Name" value="@ViewBag.EditedProduct.Name" required />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea class="form-control" id="Description" name="Description" required>@ViewBag.EditedProduct.Description</textarea>
+    </div>
+    <div class="form-group">
+        <label for="Price">Price</label>
+        <textarea class="form-control" id="Price" name="Price" required>@ViewBag.EditedProduct.Price</textarea>
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Brand">Brand</label>
+        <textarea class="form-control" id="Description" name="Brand" required>@ViewBag.EditedProduct.Brand</textarea>
+    </div>
+    <div class="form-group">
+        <label for="Ingredients">Ingredients</label>
+        <textarea class="form-control" id="Ingredients" name="Ingredients" required>@ViewBag.EditedProduct.Ingredients</textarea>
+        <span asp-validation-for="Ingredients" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Stock">Quantity input stock</label>
+        <textarea class="form-control" id="Stock" name="Stock" required>@ViewBag.EditedProduct.Stock</textarea>
+    </div>
+    <div class="form-group">
+        <label for="DateListed">Date Listed</label>
+        <input type="date" class="form-control" id="DateListed" name="DateListed" value="@ViewBag.EditedProduct.DateListed.ToString("yyyy-MM-dd")" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+
+<br />
+<a href="/Products/Index" class="btn btn-secondary">Cancel</a>
+
+<hr />
+
+<form asp-action="Delete" method="post" style="margin-top: 20px;">
+    <input type="hidden" name="id" value="@ViewBag.EditedProduct.Id" />
+    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this?');">
+        Delete Product
+    </button>
+</form>
